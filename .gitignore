@@ -33,3 +33,15 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Yarn files
+.yarn/install-state.gz
+.yarn/build-state.yml
+
+# Ignore package locks
+package-lock.json
+yarn.lock
+
+# Environment variables
+# local env files
+.env
