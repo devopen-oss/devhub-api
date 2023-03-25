@@ -11,6 +11,7 @@ module.exports = {
         ...config.rules,
         '@typescript-eslint/no-base-to-string': 0,
         '@typescript-eslint/no-throw-literal': 0,
-        'no-catch-shadow': 0
+        'no-catch-shadow': 0,
+        '@typescript-eslint/no-extraneous-class': 0
     }
 };
