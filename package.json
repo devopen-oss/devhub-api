@@ -24,7 +24,8 @@
 		"db:deploy": "prisma migrate deploy",
 		"update:i": "pnpm up --interactive",
 		"update:f": "pnpm up --latest",
-		"postinstall": "husky install .github/husky && pnpm db:generate"
+		"postinstall": "husky install .github/husky && pnpm db:generate",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@nestjs/common": "^9.0.0",
@@ -52,10 +53,11 @@
 		"@types/validator": "^13.7.14",
 		"@typescript-eslint/eslint-plugin": "^5.56.0",
 		"@typescript-eslint/parser": "^5.56.0",
+		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.36.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"husky": "^8.0.3",
+		"husky": "^8.0.0",
 		"jest": "29.3.1",
 		"lint-staged": "^13.2.0",
 		"prettier": "^2.8.7",
@@ -69,6 +71,10 @@
 		"tsconfig-paths": "4.1.1",
 		"tslib": "^2.5.0",
 		"typescript": "^4.9.5"
+	},
+	"engines": {
+		"node": ">=16",
+		"npm": ">=7"
 	},
 	"jest": {
 		"moduleFileExtensions": [
@@ -86,6 +92,17 @@
 		],
 		"coverageDirectory": "../coverage",
 		"testEnvironment": "node"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		],
+		"formatter": "@commitlint/format"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
 	},
 	"lint-staged": {
 		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
