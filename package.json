@@ -24,8 +24,7 @@
         "db:deploy": "prisma migrate deploy",
         "update:i": "pnpm up --interactive",
         "update:f": "pnpm up --latest",
-        "postinstall": "husky install .github/husky && pnpm db:generate",
-        "prepare": "husky install"
+        "postinstall": "husky install .github/husky && pnpm db:generate"
     },
     "dependencies": {
         "@nestjs/common": "^9.3.12",
