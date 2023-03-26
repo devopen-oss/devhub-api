@@ -1,18 +1,31 @@
 {
-	"extends": "../tsconfig.base.json",
-	"compilerOptions": {
-		"outDir": "../dist",
-		"baseUrl": ".",
-		"rootDir": ".",
-		"paths": {
-			"#lib/*": ["lib/*"],
-			"#guards/*": ["lib/guards/*"],
-			"#modules/*": ["modules/*"],
-			"#root/*": ["*"]
-		},
-		"composite": true,
-		"moduleResolution": "node"
-	},
-	"include": [".", "./**/*.ts"],
-	"exclude": ["tsconfig.json"]
+    "extends": "../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "../dist",
+        "baseUrl": ".",
+        "rootDir": ".",
+        "paths": {
+            "#lib/*": [
+                "lib/*"
+            ],
+            "#guards/*": [
+                "lib/guards/*"
+            ],
+            "#modules/*": [
+                "modules/*"
+            ],
+            "#root/*": [
+                "*"
+            ]
+        },
+        "composite": true,
+        "moduleResolution": "node"
+    },
+    "include": [
+        ".",
+        "./**/*.ts"
+    ],
+    "exclude": [
+        "tsconfig.json"
+    ]
 }

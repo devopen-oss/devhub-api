@@ -51,4 +51,4 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
       - name: Run ESLint
-        run: pnpm lint --fix=false
+        run: pnpm rome check
