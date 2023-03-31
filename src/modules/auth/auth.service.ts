@@ -10,8 +10,8 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import type { User } from '@prisma/client';
-import argon from 'argon2';
 
+import argon from 'argon2';
 import { PrismaService } from 'nestjs-prisma';
 import { lastValueFrom } from 'rxjs';
 

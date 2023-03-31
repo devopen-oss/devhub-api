@@ -1,6 +1,6 @@
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AuthModule } from './modules/auth/auth.module';
+import { AuthModule } from '#modules/auth/auth.module';
+import { AppController } from '#root/app.controller';
+import { AppService } from '#root/app.service';
 import { ApolloDriver, type ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -28,7 +28,6 @@ import { PrismaModule } from 'nestjs-prisma';
                 },
                 introspection: true,
                 path: configService.get<string>('GRAPHQL_ENDPOINT', '/'),
-                installSubscriptionHandlers: true,
                 autoSchemaFile: true,
                 context: (
                     { req, res }: { req: Request; res: Response }
