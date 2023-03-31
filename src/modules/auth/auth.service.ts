@@ -81,6 +81,11 @@ export class AuthService {
 				}
 			}
 		});
+
+		return {
+			access_token: accessToken,
+			expires_in: Date.now() + 432000000
+		};
 	}
 
 	public async user(

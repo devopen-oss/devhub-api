@@ -39,8 +39,7 @@ import { PrismaModule } from 'nestjs-prisma';
             isGlobal: true
         }),
 
-        AuthModule,
-
+        AuthModule
     ],
     controllers: [AppController],
     providers: [AppService]

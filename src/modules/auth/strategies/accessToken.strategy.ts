@@ -26,12 +26,12 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
 	>();
 
 	public constructor(
-		private readonly _authService: AuthService,
-		public readonly _configService: ConfigService
+		public readonly _configService: ConfigService,
+		private readonly _authService: AuthService
 	) {
 		super({
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-			secretOrKey: _configService.get('JWT_SECRET'),
+			secretOrKey: process.env.JWT_SECRET,
 			passReqToCallback: true
 		} as StrategyOptions);
 	}
