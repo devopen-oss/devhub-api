@@ -5,6 +5,12 @@ generator client {
     provider = "prisma-client-js"
 }
 
+generator nestgraphql {
+    provider = "node node_modules/prisma-nestjs-graphql"
+    output   = "../src/@generated"
+    reExport = All
+}
+
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
@@ -17,9 +23,7 @@ model User {
     createdAt DateTime  @default(now())
     sessions  Session[]
 
-    badgeIds Int[]  @default([])
-    badges   Badge? @relation(fields: [badgeIds], references: [id])
-    posts    Post[]
+    posts Post[]
 
     @@map("users")
 }
@@ -32,15 +36,6 @@ model Session {
     user        User     @relation(fields: [userId], references: [id])
 
     @@map("sessions")
-}
-
-model Badge {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    user      User[]
-
-    @@map("badges")
 }
 
 model Post {
