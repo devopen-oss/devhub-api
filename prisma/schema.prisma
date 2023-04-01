@@ -29,9 +29,8 @@ model User {
 }
 
 model Session {
-    id          Int      @id @default(autoincrement())
+    accessToken String   @id @unique @map("access_token")
     userId      Int      @map("user_id")
-    accessToken String   @unique @map("access_token")
     createdAt   DateTime @default(now())
     user        User     @relation(fields: [userId], references: [id])
 
