@@ -58,6 +58,11 @@ export class AuthService {
 			);
 		});
 
+		// We only allow users to log in, not organizations.
+		if (userData.data.type !== 'User') {
+			throw new BadRequestException('Organizations are not allowed to log in.');
+		}
+
 		// Because github doesn't give us the email by default, we have to make another request to get it.
 		if (!userData.data.email) {
 			const emails = await lastValueFrom(
