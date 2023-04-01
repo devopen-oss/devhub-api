@@ -108,8 +108,7 @@ export class AuthService {
 		});
 
 		return {
-			access_token: accessToken,
-			expires_in: Date.now() + 432000000
+			access_token: accessToken
 		};
 	}
 
@@ -117,12 +116,9 @@ export class AuthService {
 		user: JwtPayload
 	): Promise<{ auth: AuthGithubUser; user: User }> {
 		const authData = await lastValueFrom(
-			this._httpService.get<{ user: AuthGithubUser }>(
-				'https://api.github.com/user',
-				{
-					headers: { Authorization: `Bearer ${user.access_token}` }
-				}
-			)
+			this._httpService.get<AuthGithubUser>('https://api.github.com/user', {
+				headers: { Authorization: `Bearer ${user.access_token}` }
+			})
 		).catch(() => {
 			throw new UnauthorizedException(
 				'Your user information could not be obtained, you are probably not logged in or your session has expired.'
@@ -139,7 +135,7 @@ export class AuthService {
 				);
 			});
 
-		return { auth: authData.data.user, user: userData };
+		return { auth: authData.data, user: userData };
 	}
 
 	public async checkSession(token: string, userId: number) {
