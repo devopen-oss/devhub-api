@@ -1,9 +1,12 @@
+import { PermissionFlags } from '#lib/constants';
 import { CurrentUser } from '#lib/decorators/current-user.decorator';
+import { Permissions } from '#lib/decorators/permissions.decorator';
 import { AccessTokenGuard } from '#modules/auth/guards/access.guard';
 import type { JwtPayload } from '#modules/auth/strategies/accessToken.strategy';
 import {
 	Post,
 	PostCreateWithoutAuthorInput,
+	PostStatus,
 	PostUpdateWithoutAuthorInput
 } from '#root/@generated';
 import { PostsService } from './posts.service';
@@ -14,7 +17,8 @@ import { Args, Mutation, Resolver } from '@nestjs/graphql';
 export class PostsResolver {
 	public constructor(private readonly _postsService: PostsService) {}
 
-	@UseGuards(AccessTokenGuard)
+	@Permissions(PermissionFlags.CreatePost)
+    @UseGuards(AccessTokenGuard)
     @Mutation(() => Post)
 	public async createPost(
 		@Args('data') data: PostCreateWithoutAuthorInput,
@@ -40,5 +44,15 @@ export class PostsResolver {
 		@CurrentUser() author: JwtPayload
 	) {
 		return this._postsService.deletePost(id, author);
+	}
+
+	@Permissions(PermissionFlags.ManagePost)
+    @UseGuards(AccessTokenGuard)
+    @Mutation(() => Post)
+	public async changePostStatus(
+		@Args('id') id: number,
+		@Args('status') status: PostStatus
+	) {
+		return this._postsService.changePostStatus(id, status);
 	}
 }

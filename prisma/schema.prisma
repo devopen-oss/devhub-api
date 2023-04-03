@@ -19,13 +19,27 @@ datasource db {
 }
 
 model User {
-    id        Int       @id @default(autoincrement())
-    email     String    @unique
-    name      String
-    createdAt DateTime  @default(now())
-    sessions  Session[]
+    /// User id
+    id          Int      @id @default(autoincrement())
+    /// User email
+    /// @Validator.IsEmail()
+    /// @Validator.IsNotEmpty()
+    /// @HideField({ input: true, output: true })
+    email       String   @unique
+    /// User name
+    /// @Validator.IsNotEmpty()
+    /// @Validator.MinLength(3)
+    /// @Validator.MaxLength(20)
+    name        String
+    /// The date the user created their account
+    /// @HideField({ input: true })
+    createdAt   DateTime @default(now())
+    /// The permissions that the user has, by default is only create posts
+    /// @HideField({ input: true })
+    permissions Int[]    @default([1])
 
-    posts Post[]
+    sessions Session[]
+    posts    Post[]
 
     @@map("users")
 }

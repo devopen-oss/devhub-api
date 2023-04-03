@@ -2,6 +2,7 @@ import { AuthModule } from '#modules/auth/auth.module';
 import { AppController } from '#root/app.controller';
 import { AppService } from '#root/app.service';
 import { PostsModule } from './modules/posts/posts.module';
+import { UserModule } from './modules/user/user.module';
 import { ApolloDriver, type ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -41,8 +42,8 @@ import { PrismaModule } from 'nestjs-prisma';
         }),
 
         AuthModule,
-
-        PostsModule
+        PostsModule,
+        UserModule
     ],
     controllers: [AppController],
     providers: [AppService]
