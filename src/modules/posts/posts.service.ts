@@ -31,25 +31,42 @@ export class PostsService {
 		data: PostUpdateWithoutAuthorInput,
 		author: JwtPayload
 	) {
-		await this._prismaService.post
-			.findFirstOrThrow({
-				where: {
-					id,
-					userId: author.id
-				}
-			})
-			.catch(() => {
-				// TODO: check if the user has permissions to update the post
-				throw new UnauthorizedException(
-					'You are not authorized to update this post.'
-				);
-			});
+		await this._getUserPost(id, author.id).catch(() => {
+			// TODO: check if the user has permissions to update the post
+			throw new UnauthorizedException(
+				'You are not authorized to update this post.'
+			);
+		});
 
 		return this._prismaService.post.update({
 			where: {
 				id
 			},
 			data
+		});
+	}
+
+	public async deletePost(id: number, author: JwtPayload) {
+		await this._getUserPost(id, author.id).catch(() => {
+			// TODO: check if the user has permissions to delete the post
+			throw new UnauthorizedException(
+				'You are not authorized to delete this post.'
+			);
+		});
+
+		return this._prismaService.post.delete({
+			where: {
+				id
+			}
+		});
+	}
+
+	private async _getUserPost(id: number, userId: number) {
+		return this._prismaService.post.findMany({
+			where: {
+				id,
+				userId
+			}
 		});
 	}
 }

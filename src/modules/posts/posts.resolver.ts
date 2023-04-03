@@ -32,4 +32,13 @@ export class PostsResolver {
 	) {
 		return this._postsService.updatePost(id, data, author);
 	}
+
+	@UseGuards(AccessTokenGuard)
+    @Mutation(() => Post)
+	public async deletePost(
+		@Args('id') id: number,
+		@CurrentUser() author: JwtPayload
+	) {
+		return this._postsService.deletePost(id, author);
+	}
 }
