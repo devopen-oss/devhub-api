@@ -4,6 +4,9 @@ dependencies:
   '@apollo/server':
     specifier: ^4.5.0
     version: 4.5.0(graphql@16.6.0)
+  '@devoxa/prisma-relay-cursor-connection':
+    specifier: ^2.2.2
+    version: 2.2.2(@prisma/client@4.12.0)
   '@nestjs/apollo':
     specifier: ^11.0.4
     version: 11.0.4(@apollo/server@4.5.0)(@apollo/subgraph@2.4.0)(@nestjs/common@9.3.12)(@nestjs/core@9.3.12)(@nestjs/graphql@11.0.4)(graphql@16.6.0)
@@ -973,6 +976,15 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
+
+  /@devoxa/prisma-relay-cursor-connection@2.2.2(@prisma/client@4.12.0):
+    resolution: {integrity: sha512-nR8/f8DQXNG6a1C3wNRs2YZa6eDCuygz/fzwt6a/ARMsr0asnMK95NhFkZ2jN+ksKHA/AtfvVZvG7UVtJOB09Q==}
+    peerDependencies:
+      '@prisma/client': ^2.0.0 || ^3.0.0 || ^4.0.0
+    dependencies:
+      '@prisma/client': 4.12.0(prisma@4.12.0)
+      graphql-fields: 2.0.3
+    dev: false
 
   /@graphql-tools/merge@8.4.0(graphql@16.6.0):
     resolution: {integrity: sha512-3XYCWe0d3I4F1azNj1CdShlbHfTIfiDgj00R9uvFH8tHKh7i1IWN3F7QQYovcHKhayaR6zPok3YYMESYQcBoaA==}
@@ -3808,6 +3820,10 @@ packages:
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
     dev: true
+
+  /graphql-fields@2.0.3:
+    resolution: {integrity: sha512-x3VE5lUcR4XCOxPIqaO4CE+bTK8u6gVouOdpQX9+EKHr+scqtK5Pp/l8nIGqIpN1TUlkKE6jDCCycm/WtLRAwA==}
+    dev: false
 
   /graphql-tag@2.12.6(graphql@16.6.0):
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
