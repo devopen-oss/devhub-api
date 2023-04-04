@@ -65,8 +65,8 @@ dependencies:
     specifier: ^4.0.1
     version: 4.0.1
   prisma-nestjs-graphql:
-    specifier: ^17.1.0
-    version: 17.1.0
+    specifier: ^18.0.0
+    version: 18.0.0
   reflect-metadata:
     specifier: ^0.1.13
     version: 0.1.13
@@ -5484,8 +5484,8 @@ packages:
       react-is: 18.2.0
     dev: true
 
-  /prisma-nestjs-graphql@17.1.0:
-    resolution: {integrity: sha512-TrkOjb4wAPZ7OBej0EyB2ZsinjYTwWR5sD8RMk27xSm7i7K8exjLOTkVZaLYrncV6lzcq82Rocdlie3RpgQVZQ==}
+  /prisma-nestjs-graphql@18.0.0:
+    resolution: {integrity: sha512-7c38NhBdXxSUflHTIIt6ndzeYZQrSIpAclrxsswpO9+gqKH68V/9fZqBBGQlAzHkU+Tn0Uwmw89M9vVbIrV2aA==}
     hasBin: true
     dependencies:
       '@prisma/generator-helper': 4.12.0
