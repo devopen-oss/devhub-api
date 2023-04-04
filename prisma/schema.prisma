@@ -6,9 +6,11 @@ generator client {
 }
 
 generator nestgraphql {
-    provider = "node node_modules/prisma-nestjs-graphql"
-    output   = "../src/@generated"
-    reExport = All
+    provider               = "node node_modules/prisma-nestjs-graphql"
+    output                 = "../src/@generated"
+    reExport               = All
+    fields_Validator_from  = "class-validator"
+    fields_Validator_input = true
 }
 
 datasource db {
@@ -17,13 +19,27 @@ datasource db {
 }
 
 model User {
-    id        Int       @id @default(autoincrement())
-    email     String    @unique
-    name      String
-    createdAt DateTime  @default(now())
-    sessions  Session[]
+    /// User id
+    id          Int      @id @default(autoincrement())
+    /// User email
+    /// @Validator.IsEmail()
+    /// @Validator.IsNotEmpty()
+    /// @HideField({ input: true, output: true })
+    email       String   @unique
+    /// User name
+    /// @Validator.IsNotEmpty()
+    /// @Validator.MinLength(3)
+    /// @Validator.MaxLength(20)
+    name        String
+    /// The date the user created their account
+    /// @HideField({ input: true })
+    createdAt   DateTime @default(now())
+    /// The permissions that the user has, by default is only create posts
+    /// @HideField({ input: true })
+    permissions Int[]    @default([1])
 
-    posts Post[]
+    sessions Session[]
+    posts    Post[]
 
     @@map("users")
 }
@@ -38,14 +54,39 @@ model Session {
 }
 
 model Post {
-    id        Int      @id @default(autoincrement())
-    userId    Int      @map("user_id")
+    /// Post id
+    id        Int        @id @default(autoincrement())
+    /// The user who created the post
+    userId    Int        @map("user_id")
+    /// The post title
     title     String
+    /// The post content
+    /// @Validator.MinLength(200)
+    /// @Validator.MaxLength(500)
     content   String
-    image     String
-    author    User     @relation(fields: [userId], references: [id])
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt @map("updated_at")
+    /// The post image
+    /// @Validator.IsUrl()
+    image     String     @unique
+    /// If the post was approved or not
+    /// - Approved: The post will be visible to everyone
+    /// - Pending: The post will be visible to the author and admins
+    /// - Rejected: The post will be deleted after 2 days
+    /// @HideField({ input: true })
+    status    PostStatus @default(PENDING)
+    /// The date the post was created
+    /// @HideField({ input: true })
+    createdAt DateTime   @default(now())
+    /// The date the post was updated
+    /// @HideField({ input: true })
+    updatedAt DateTime   @updatedAt @map("updated_at")
+
+    author User @relation(fields: [userId], references: [id])
 
     @@map("posts")
+}
+
+enum PostStatus {
+    APPROVED
+    PENDING
+    REJECTED
 }

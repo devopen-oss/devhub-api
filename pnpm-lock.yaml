@@ -4,6 +4,9 @@ dependencies:
   '@apollo/server':
     specifier: ^4.5.0
     version: 4.5.0(graphql@16.6.0)
+  '@devoxa/prisma-relay-cursor-connection':
+    specifier: ^2.2.2
+    version: 2.2.2(@prisma/client@4.12.0)
   '@nestjs/apollo':
     specifier: ^11.0.4
     version: 11.0.4(@apollo/server@4.5.0)(@apollo/subgraph@2.4.0)(@nestjs/common@9.3.12)(@nestjs/core@9.3.12)(@nestjs/graphql@11.0.4)(graphql@16.6.0)
@@ -31,9 +34,15 @@ dependencies:
   '@nestjs/platform-express':
     specifier: ^9.3.12
     version: 9.3.12(@nestjs/common@9.3.12)(@nestjs/core@9.3.12)
+  '@nestjs/schedule':
+    specifier: ^2.2.0
+    version: 2.2.0(@nestjs/common@9.3.12)(@nestjs/core@9.3.12)(reflect-metadata@0.1.13)
   '@prisma/client':
     specifier: ^4.12.0
     version: 4.12.0(prisma@4.12.0)
+  '@sapphire/bitfield':
+    specifier: ^1.0.0
+    version: 1.0.0
   argon2:
     specifier: ^0.30.3
     version: 0.30.3
@@ -968,6 +977,15 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
+  /@devoxa/prisma-relay-cursor-connection@2.2.2(@prisma/client@4.12.0):
+    resolution: {integrity: sha512-nR8/f8DQXNG6a1C3wNRs2YZa6eDCuygz/fzwt6a/ARMsr0asnMK95NhFkZ2jN+ksKHA/AtfvVZvG7UVtJOB09Q==}
+    peerDependencies:
+      '@prisma/client': ^2.0.0 || ^3.0.0 || ^4.0.0
+    dependencies:
+      '@prisma/client': 4.12.0(prisma@4.12.0)
+      graphql-fields: 2.0.3
+    dev: false
+
   /@graphql-tools/merge@8.4.0(graphql@16.6.0):
     resolution: {integrity: sha512-3XYCWe0d3I4F1azNj1CdShlbHfTIfiDgj00R9uvFH8tHKh7i1IWN3F7QQYovcHKhayaR6zPok3YYMESYQcBoaA==}
     peerDependencies:
@@ -1565,6 +1583,20 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /@nestjs/schedule@2.2.0(@nestjs/common@9.3.12)(@nestjs/core@9.3.12)(reflect-metadata@0.1.13):
+    resolution: {integrity: sha512-wrDnUONTxBkD6lTWh9ecYk/kvJTbA3PylotjBoRsECmcS1SNvgInFXuL38UnHiFnXM3CHSFnzRLB259Bc1mOdQ==}
+    peerDependencies:
+      '@nestjs/common': ^7.0.0 || ^8.0.0 || ^9.0.0
+      '@nestjs/core': ^7.0.0 || ^8.0.0 || ^9.0.0
+      reflect-metadata: ^0.1.12
+    dependencies:
+      '@nestjs/common': 9.3.12(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
+      '@nestjs/core': 9.3.12(@nestjs/common@9.3.12)(@nestjs/platform-express@9.3.12)(reflect-metadata@0.1.13)(rxjs@7.8.0)
+      cron: 2.2.0
+      reflect-metadata: 0.1.13
+      uuid: 9.0.0
+    dev: false
+
   /@nestjs/schematics@9.1.0(chokidar@3.5.3)(typescript@4.9.5):
     resolution: {integrity: sha512-/7CyMTnPJSK9/xD9CkCqwuHPOlHVlLC2RDnbdCJ7mIO07SdbBbY14msTqtYW9VRQtsjZPLh1GTChf7ryJUImwA==}
     peerDependencies:
@@ -1768,6 +1800,11 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@sapphire/bitfield@1.0.0:
+    resolution: {integrity: sha512-gbcprMwXIzHtUGbplloJ0BXQE8hugYQyVCpXY24346Ked0HHMxje39A9Sz7Eu80ibtHTBLbeu4JTLV/j85JNww==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dev: false
 
   /@sapphire/ts-config@4.0.0-pr-567.bc42e07.0:
     resolution: {integrity: sha512-16bJemcuZFLPvDk8HrC2VDpi4HyzfG2Woz/dZY8Iw398DCmte+ubMGZSI06sR0quWGt3G2fmwbNfk845jqvqEQ==}
@@ -3023,6 +3060,12 @@ packages:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
 
+  /cron@2.2.0:
+    resolution: {integrity: sha512-GPiI3OgMv83XRtEUc2gUdaLvJhO3XbLN288layOBkDTupg0RK5IECNGpkykIMHg+muVR2bxt29b0xvCAcBrjYQ==}
+    dependencies:
+      luxon: 3.3.0
+    dev: false
+
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -3777,6 +3820,10 @@ packages:
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
     dev: true
+
+  /graphql-fields@2.0.3:
+    resolution: {integrity: sha512-x3VE5lUcR4XCOxPIqaO4CE+bTK8u6gVouOdpQX9+EKHr+scqtK5Pp/l8nIGqIpN1TUlkKE6jDCCycm/WtLRAwA==}
+    dev: false
 
   /graphql-tag@2.12.6(graphql@16.6.0):
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
@@ -4854,6 +4901,11 @@ packages:
   /lru-cache@7.18.3:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
+
+  /luxon@3.3.0:
+    resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
+    engines: {node: '>=12'}
+    dev: false
 
   /macos-release@2.5.1:
     resolution: {integrity: sha512-DXqXhEM7gW59OjZO8NIjBCz9AQ1BEMrfiOAl4AYByHCtVHRF4KoGNO8mqQeM8lRCtQe/UnJ4imO/d2HdkKsd+A==}
