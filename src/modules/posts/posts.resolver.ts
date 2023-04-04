@@ -51,7 +51,10 @@ export class PostsResolver {
     @Mutation(() => Post)
 	public async changePostStatus(
 		@Args('id') id: number,
-		@Args('status') status: PostStatus
+		@Args({
+            name: 'status',
+            type: () => PostStatus
+        }) status: PostStatus
 	) {
 		return this._postsService.changePostStatus(id, status);
 	}
