@@ -39,9 +39,8 @@ export class PermissionsGuard implements CanActivate {
 		});
 
 		if (!user.permissions) return false;
-		if (PermissionsBitField.has(user.permissions, roles)) return true;
 
-		return false;
+		return PermissionsBitField.has(user.permissions, roles);
 	}
 
 	public getRequestResponse(context: ExecutionContext): RequestAndResponse {

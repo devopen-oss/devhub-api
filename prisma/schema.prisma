@@ -35,8 +35,7 @@ model User {
     /// @HideField({ input: true })
     createdAt   DateTime @default(now())
     /// The permissions that the user has, by default is only create posts
-    /// @HideField({ input: true })
-    permissions Int[]    @default([1])
+    permissions Int      @default(1)
 
     sessions Session[]
     posts    Post[]
