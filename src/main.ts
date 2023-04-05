@@ -4,7 +4,9 @@ import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma';
 
 async function bootstrap() {
-	const app = await NestFactory.create(AppModule);
+	const app = await NestFactory.create(AppModule, {
+		cors: false
+	});
 
 	// Validation
 	app.useGlobalPipes(new ValidationPipe());
