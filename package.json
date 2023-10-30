@@ -30,7 +30,7 @@
         "@apollo/server": "^4.7.0",
         "@devoxa/prisma-relay-cursor-connection": "^2.2.2",
         "@nestjs/apollo": "^11.0.5",
-        "@nestjs/axios": "^2.0.0",
+        "@nestjs/axios": "^3.0.1",
         "@nestjs/common": "^9.4.0",
         "@nestjs/config": "^3.0.0",
         "@nestjs/core": "^9.4.0",
